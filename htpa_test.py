@@ -1,4 +1,6 @@
-import lcd
+import lcd, image, time
+#import sensor
+from modules import htpa
 from machine import I2C
 
 
@@ -7,13 +9,6 @@ devices = i2c.scan()
 #print(devices)
 lcd.init()
 lcd.draw_string(100, 100, "{}".format(devices), lcd.GREEN, lcd.BLACK)
-
-#from modules import htpa
-
-import lcd, image
-#import sensor
-import time
-from modules import htpa
 
 lcd_w = 320
 lcd_h = 240
@@ -25,9 +20,6 @@ offset_y = 50
 zoom = 2
 rotate = 0
 
-#sensor.reset()
-#sensor.set_pixformat(sensor.RGB565)
-#sensor.set_framesize(sensor.QVGA)
 lcd.init(type=2, freq=20000000)
 lcd.rotation(1)
 dev = htpa(i2c=I2C.I2C0, scl_pin=7, sda_pin=6, i2c_freq=1000000)
@@ -49,17 +41,6 @@ while 1:
         max_temp_pos = (max_pos//sensor_width, max_pos%sensor_width)
         img = img.resize(lcd_w, lcd_h)
         img = img.to_rainbow(1)
-        #img2 = sensor.snapshot()
-        #img2.conv3(edge)
-        #img2 = img2.rotation_corr(z_rotation=rotate, x_translation=offset_x, y_translation=offset_y, zoom=zoom)
-        #img2 = img.blend(img2)
-        #del img
-
-        ## center
-        #center_temp = temperature[int(sensor_width/2 + sensor_height/2*sensor_width)]/100.0
-        #img = img.draw_rectangle(lcd_w//2-36, lcd_h//2, 80, 22, color=(0xff,112,0xff), fill=True)
-        #img = img.draw_string(lcd_w//2-36, lcd_h//2, "%.2f" %(center_temp), color=(0xff,0xff,0xff), scale=2)
-        #img = img.draw_cross(lcd_w//2, lcd_h//2, color=(0xff,0xff,0xff), thickness=3)
 
         # max
         max_temp_pos = (int(lcd_w/sensor_width*max_temp_pos[0]), int(lcd_h/sensor_height*max_temp_pos[1]))
