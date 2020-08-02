@@ -1,26 +1,39 @@
 import sensor, image, time
-import os
+import uos
 
 
 CSV_FILE = '/sd/attendance.csv'
 MAIN_FILE = '/sd/main.py'
 
+#uos.remove(CSV_FILE)
+#uos.remove(MAIN_FILE)
 
-def csv_add():
-    # os.remove(CSV_FILE)
-    # os.remove(MAIN_FILE)
-    # if not exist, create it
-    if
-    f = open(CSV_FILE, 'w+')
-    f.write('datetime, employee_id, temperature, addition\n')
-    f.write('안녕')
-    f.close()
+class csv_file:
+    def __init__(self, _path='/sd/attendance.csv'):
+        self.path = _path
+        try:
+            uos.stat(self.path)
+        except OSError:
+            print("[Info]", "Not exist, create it and add header")
+            with open(self.path, 'w+') as f:
+                f.write('datetime, employee_id, temperature, addition\n')
 
-    with open(CSV_FILE, 'r') as f:
-        res = f.readline()
-        print(res)
+    def add(self, dt, e_id, temp, addi=''):
+        try:
+            with open(self.path, 'a+') as f:
+                f.write('{},{},{},{}\n'.format(dt, e_id, temp, addi))
+        except OSError:
+            print("[Warning]", "Attendance info add fail")
 
-    _list = os.listdir()
-    print(_list)
+    def print_csv(self):
+        with open(self.path, 'r') as f:
+            for line in f.readlines():
+                print(line.strip())
 
-csv_add()
+
+if __name__ == "__main__":
+    print(uos.listdir())
+
+    csv = csv_file(CSV_FILE)
+    csv.add(1, 2, 3)
+    csv.print_csv()
