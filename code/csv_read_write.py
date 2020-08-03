@@ -1,12 +1,15 @@
-import sensor, image, time
+import sensor
+import image
+import time
 import uos
 
 
 CSV_FILE = '/sd/attendance.csv'
 MAIN_FILE = '/sd/main.py'
 
-#uos.remove(CSV_FILE)
-#uos.remove(MAIN_FILE)
+# uos.remove(CSV_FILE)
+# uos.remove(MAIN_FILE)
+
 
 class csv_file:
     def __init__(self, _path='/sd/attendance.csv'):
@@ -16,7 +19,7 @@ class csv_file:
         except OSError:
             print("[Info]", "Not exist, create it and add header")
             with open(self.path, 'w+') as f:
-                f.write('datetime, employee_id, temperature, addition\n')
+                f.write('datetime, employee_id, temperature, mask\n')
 
     def add(self, dt, e_id, temp, addi=''):
         try:

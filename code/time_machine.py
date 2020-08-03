@@ -1,4 +1,6 @@
-import sensor, image, utime
+import sensor
+import image
+import utime
 
 
 class time_machine:
