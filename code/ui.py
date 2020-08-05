@@ -3,8 +3,7 @@ import lvgl_helper as lv_h
 import lcd
 import time
 import touchscreen as ts
-from machine import Timer
-from machine import I2C
+from machine import Timer, I2C
 
 
 i2c = I2C(I2C.I2C0, freq=400000, scl=30, sda=31)
