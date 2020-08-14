@@ -7,9 +7,9 @@ import KPU as kpu
 SINGLE_FACE_DETECTION = True
 
 lcd.init()
-sensor.reset()
-sensor.set_pixformat(sensor.RGB565)
-sensor.set_framesize(sensor.QVGA)
+#sensor.reset()
+#sensor.set_pixformat(sensor.RGB565)
+#sensor.set_framesize(sensor.QVGA)
 sensor.run(1)
 
 task = kpu.load(0x300000)

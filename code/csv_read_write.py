@@ -15,6 +15,7 @@ class csv_file:
     def __init__(self, _path='/sd/attendance.csv'):
         self.path = _path
         try:
+            print(uos.listdir())
             uos.stat(self.path)
         except OSError:
             print("[Info]", "Not exist, create it and add header")
