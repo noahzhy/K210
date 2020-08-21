@@ -27,7 +27,6 @@ while True:
             if w*h < 5000:
                 break
             img.draw_rectangle(i.rect(), color=(0, 255, 0), thickness=3)
-            #img.draw_string(x, y+h+2, "ZHANG HY", color=(0, 255, 0))
             if SINGLE_FACE_DETECTION:
                 break
 
