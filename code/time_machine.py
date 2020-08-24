@@ -5,8 +5,7 @@ import utime
 
 class time_machine:
     def __init__(self, _init=None):
-        if not _init:
-            _init = (2000, 1, 1, 0, 0, 0, 0, 0)
+        if not _init: _init = (2000, 1, 1, 0, 0, 0, 0, 0)
         self._init = utime.mktime(_init)
         print('[init]', 'time', utime.localtime(self._init))
 
