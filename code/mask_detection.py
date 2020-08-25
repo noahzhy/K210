@@ -16,10 +16,10 @@ sensor_height = dev.height()
 md = kpu.load(0x400000)
 kpu.set_outputs(md, 0, 1, 3, 1)
 
-# def save_img(img):
-#     path = "/sd/img_{}.jpg".format(time.localtime())
-#     img.save(path)
-#     print(len(os.listdir()))
+def save_img(img):
+    path = "/sd/img_{}.jpg".format(time.localtime())
+    img.save(path)
+    print(len(os.listdir()))
 
 
 def run():
@@ -37,8 +37,8 @@ def run():
             print("fmap", fmap[:])
             # save to SD card
             #save_img(img)
-            lcd.display(img)
-            time.sleep(1)
+            lcd.display(img.resize(240,240))
+            #time.sleep(1)
         except Exception as e:
             print(e)
 
