@@ -23,7 +23,7 @@ def save_img(img):
 
 
 def run():
-
+    label_text = ""
     while True:
         try:
             dev.temperature()
@@ -34,10 +34,19 @@ def run():
             img.pix_to_ai()
             a = kpu.forward(md, img)
             fmap = kpu.get_output(md, 0)
-            print("fmap", fmap[:])
+            masked, no_mask, fake = fmap[:]
+            print(fmap[:])
+            if masked >= 0.8:
+                label_text = "Masked"
+            elif no_mask >= 0.9:
+                label_text = "No Mask"
+            elif fake >= 0.8:
+                label_text = "Fake"
+            img = img.resize(240,240)
+            img.draw_string(10, 10, label_text, color=(0x00, 0xff, 0x00), scale=2)
             # save to SD card
             #save_img(img)
-            lcd.display(img.resize(240,240))
+            lcd.display(img)
             #time.sleep(1)
         except Exception as e:
             print(e)
