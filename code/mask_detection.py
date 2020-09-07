@@ -9,9 +9,9 @@ sensor.set_pixformat(sensor.RGB565)
 sensor.set_framesize(sensor.QVGA)
 sensor.run(1)
 
-dev = htpa(i2c=I2C.I2C0, scl_pin=7, sda_pin=6, i2c_freq=1000000)
-sensor_width = dev.width()
-sensor_height = dev.height()
+#dev = htpa(i2c=I2C.I2C0, scl_pin=7, sda_pin=6, i2c_freq=115200)
+#sensor_width = dev.width()
+#sensor_height = dev.height()
 
 md = kpu.load(0x400000)
 kpu.set_outputs(md, 0, 1, 3, 1)
